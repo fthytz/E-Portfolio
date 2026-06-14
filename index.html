@@ -1,0 +1,724 @@
+* {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-main);
+        background-color: var(--bg-main);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        line-height: 1.6;
+        padding-top: 70px;
+    }
+
+    /* Navigation */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: var(--transition);
+        position: relative;
+        padding: 5px 0;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+        color: var(--primary);
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    /* Container & Base Sections */
+    section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        scroll-margin-top: 70px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 40px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+    }
+
+    /* Home / Hero Section */
+    #home {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 40px;
+        align-items: center;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        margin-bottom: 25px;
+        font-weight: 400;
+    }
+
+    .instructor-info {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        background: var(--border);
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-weight: 500;
+    }
+
+    .sdg-box {
+        background: var(--bg-card);
+        border-left: 5px solid var(--primary);
+        padding: 25px;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        box-shadow: var(--shadow);
+    }
+
+    .sdg-badge {
+        background: var(--primary);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .sdg-box h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .sdg-box p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    .hero-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar-frame {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 20px 40px rgba(229, 36, 59, 0.2);
+        position: relative;
+    }
+
+    .avatar-frame::after {
+        content: 'MF';
+        font-size: 5rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -2px;
+    }
+
+    /* Labs & Projects Grid */
+    .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        background: #000;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .card-content {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .card-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    .reflection-block {
+        background: var(--bg-main);
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        border-left: 3px solid var(--accent);
+        margin-top: auto;
+    }
+
+    .reflection-title {
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: var(--text-main);
+        margin-bottom: 5px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Project Specific Elements */
+    .project-card .card-desc h4 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 15px;
+        margin-bottom: 4px;
+        color: var(--primary);
+    }
+
+    .btn-github {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #24292e;
+        color: white;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: 20px;
+        transition: var(--transition);
+        border: none;
+        width: 100%;
+    }
+
+    .btn-github:hover {
+        background: #000000;
+        transform: translateY(-2px);
+    }
+
+    /* Reflection Journey Section */
+    .journey-box {
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        padding: 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .journey-box::before {
+        content: '“';
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        font-size: 10rem;
+        color: var(--border);
+        font-family: serif;
+        line-height: 1;
+        z-index: 0;
+    }
+
+    .journey-text {
+        position: relative;
+        z-index: 1;
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: var(--text-main);
+    }
+
+    /* Skills Section */
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .skill-badge {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .skill-badge:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-3px);
+    }
+
+    .skill-badge::before {
+        content: '•';
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+
+    /* Resources Section */
+    .resources-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .resource-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .resource-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(229, 36, 59, 0.1);
+        color: var(--primary);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+    }
+
+    .resource-info h4 {
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+    }
+
+    .resource-info p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+        background: #111;
+        color: #aaa;
+        padding: 40px 20px;
+        text-align: center;
+        border-top: 1px solid #222;
+        font-size: 0.9rem;
+        margin-top: 60px;
+    }
+
+    footer p {
+        margin-bottom: 8px;
+    }
+
+    footer .meta-info {
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        #home {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 30px;
+        }
+        .hero-text h1 {
+            font-size: 2.5rem;
+        }
+        .section-title {
+            font-size: 1.75rem;
+        }
+        .hero-visual {
+            order: -1;
+        }
+        .sdg-box {
+            text-align: left;
+            border-left: 5px solid var(--primary);
+        }
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            gap: 15px;
+            padding: 12px;
+        }
+        body {
+            padding-top: 110px;
+        }
+        header {
+            position: absolute;
+        }
+        .nav-links {
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+        }
+        .grid-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<header>
+    <nav>
+        <a href="#home" class="logo">
+            <span>e-Portfolio</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#labs">Labs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    
+    <section id="home">
+        <div class="hero-text">
+            <span class="instructor-info">Instructor: Under the guidance of Mr Nelson</span>
+            <h1>Muhammad Fathul Hidayat Bin Hasnul Hadie</h1>
+            <p class="subtitle">Programme: Software Engineering</p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px;">
+                Assalamualikum and Hi! I was born and raised In Penang and this is my Project , LokerMaju.
+            </p>
+            
+            <div class="sdg-box">
+                <span class="sdg-badge">SDG 1 Focus</span>
+                <h3>Goal 1: No Poverty</h3>
+                <p>Dedicated to breaking the cycle of unemployment and connecting job seekers with sustainable, income-generating opportunities.</p>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="avatar-frame"></div>
+        </div>
+    </section>
+
+    <section id="labs">
+        <h2 class="section-title">Laboratory Exercises</h2>
+        <div class="grid-layout">
+            
+            <article class="card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/_YRKCaPWDSs](https://www.youtube.com/embed/_YRKCaPWDSs)" title="Lab 1 Video UI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 1: UI Foundations</h3>
+                    <p class="card-desc">Comprehensive exploration of building adaptive user interfaces and managing dynamic layout components effectively within the view hierarchy.</p>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Reflection</div>
+                        I learned how to create a user interface and organize application components effectively. This lab helped me understand the fundamentals of designing mobile app screens.
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/ZV5sPZSncRw](https://www.youtube.com/embed/ZV5sPZSncRw)" title="Lab 2 Video Interaction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 2: User Interaction</h3>
+                    <p class="card-desc">Implementation of advanced system interaction patterns and robust callback triggers handling diverse event flows.</p>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Reflection</div>
+                        I learned how to create interactions between users and application components. This improved my understanding of event-driven programming.
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/f0aUKytBGH4](https://www.youtube.com/embed/f0aUKytBGH4)" title="Lab 3 Video Material Design" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 3: Material Design</h3>
+                    <p class="card-desc">Applying modern visual systems to build highly structural, accessible, and theme-consistent structural modules.</p>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Reflection</div>
+                        I learned about design consistency and user experience principles. This lab helped me build more attractive and user-friendly applications.
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/datXBd1b5Ec](https://www.youtube.com/embed/datXBd1b5Ec)" title="Lab 4 Video Navigation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 4: Deep Dive Navigation</h3>
+                    <p class="card-desc">Structuring complex architecture flows and pass parameters reliably across application screen backstacks.</p>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Reflection</div>
+                        I learned navigation concepts in greater detail. Understanding navigation made it easier to create a smooth user experience across multiple screens.
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/hkyeB4a_GGM](https://www.youtube.com/embed/hkyeB4a_GGM)" title="Lab 5 Video Room" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lab 5: Room Local Database</h3>
+                    <p class="card-desc">Architecting robust offline data storage and handling structured relational query processing safely locally.</p>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Reflection</div>
+                        I learned how Room Database simplifies local data management. This knowledge helped me build applications that can function offline efficiently.
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Core Projects</h2>
+        <div class="grid-layout">
+            
+            <article class="card project-card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/tg3FjQOtYv0](https://www.youtube.com/embed/tg3FjQOtYv0)" title="Project 1 VSR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Project 1: LokerMaju (Core Setup)</h3>
+                    <div class="card-desc">
+                        <h4>Problem Statement</h4>
+                        <p>Widespread unemployment and underemployment remain major drivers of poverty, as traditional job search methods often fail to reach those who need income most. Without accessible paths to stable employment, vulnerable populations are trapped in a cycle of financial insecurity.</p>
+                    </div>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Lessons Learned</div>
+                        I learned how to integrate all previous lab knowledge into a complete mobile application. This project improved my problem-solving skills and helped me create an app that can be used personally without internet access.
+                    </div>
+                    <a href="[https://github.com/fthytz/a21068_fathul_MrNelson_Project1](https://github.com/fthytz/a21068_fathul_MrNelson_Project1)" target="_blank" class="btn-github">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </article>
+
+            <article class="card project-card">
+                <div class="video-container">
+                    <iframe src="[https://www.youtube.com/embed/VDyKCZVCQso](https://www.youtube.com/embed/VDyKCZVCQso)" title="Project 2 VSR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Project 2: LokerMaju (Cloud &amp; Ecosystem)</h3>
+                    <div class="card-desc">
+                        <h4>Problem Statement</h4>
+                        <p>Widespread unemployment and underemployment remain major drivers of poverty, as traditional job search methods often fail to reach those who need income most. Without accessible paths to stable employment, vulnerable populations are trapped in a cycle of financial insecurity.</p>
+                    </div>
+                    <div class="reflection-block">
+                        <div class="reflection-title">Lessons Learned</div>
+                        I learned how to use Google Cloud, Firebase, and external APIs to create a more advanced application. This project strengthened my understanding of cloud-based mobile development and real-world integration.
+                    </div>
+                    <a href="[https://github.com/fthytz/a210678_fathul_MrNelson_Project2](https://github.com/fthytz/a210678_fathul_MrNelson_Project2)" target="_blank" class="btn-github">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section id="reflection">
+        <h2 class="section-title">Reflection &amp; Learning Journey</h2>
+        <div class="journey-box">
+            <p class="journey-text">
+                Building Lokermaju transformed me from a student following tutorials into a mobile developer by forcing me to master state management, API integration, and real-time database queries. I learned to bridge user-friendly frontend design with secure backend logic to ensure job seekers experience a seamless, reliable platform. Ultimately, this code-heavy journey proved how mobile development can be directly channeled to solve critical socio-economic challenges.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills &amp; Tech Stack</h2>
+        <div class="skills-container">
+            <div class="skill-badge">Kotlin</div>
+            <div class="skill-badge">Android Studio</div>
+            <div class="skill-badge">Jetpack Compose</div>
+            <div class="skill-badge">Material Design</div>
+            <div class="skill-badge">Room Database</div>
+            <div class="skill-badge">Retrofit</div>
+            <div class="skill-badge">Firebase Firestore</div>
+            <div class="skill-badge">ML Kit</div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2 class="section-title">External Resources Utilized</h2>
+        <div class="resources-list">
+            <div class="resource-item">
+                <div class="resource-icon">API</div>
+                <div class="resource-info">
+                    <h4>Muse APIs</h4>
+                    <p>Leveraged for comprehensive data retrieval processes.</p>
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-icon">AI</div>
+                <div class="resource-info">
+                    <h4>Gemini</h4>
+                    <p>Utilized for intelligent assistant integration systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Muhammad Fathul Hidayat Bin Hasnul Hadie</p>
+    <p class="meta-info">Matric No: A210678 | Programme: Software Engineering</p>
+</footer>
+
+<script>
+    // Simple Navigation Active Indicator on Scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 80)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
